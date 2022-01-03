@@ -4,6 +4,7 @@ const createError = require('http-errors');
 
 const checkLogin = (req, res, next) => {
     const { authorization } = req.headers;
+    console.log({ authorization });
     if (authorization && authorization.startsWith('Bearer')) {
         try {
             const token = authorization.split(' ')[1];

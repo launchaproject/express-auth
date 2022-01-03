@@ -8,7 +8,7 @@ const User = require('../models/People');
 
 /**
  * @desc Auth user & get token
- * @route POST /api/user/login
+ * @route POST /user/login
  * @access Public
  */
 
@@ -67,7 +67,7 @@ const login = async (req, res, next) => {
 };
 /**
  * @desc Register new user
- * @route POST /api/users
+ * @route POST /user/register
  * @access Public
  */
 
@@ -102,7 +102,33 @@ const regiser = async (req, res, next) => {
     }
 };
 
+/**
+ * @desc Get all user
+ * @route POST /user/all
+ * @access Protected
+ */
+
+const allUser = async (req, res, next) => {
+    try {
+        // select("-password")
+        const users = await User.find().select('-password');
+        res.status(200).json({
+            message: 'All User Loaded',
+            users,
+        });
+    } catch (error) {
+        res.status(500).json({
+            errors: {
+                common: {
+                    message: error.message,
+                },
+            },
+        });
+    }
+};
+
 module.exports = {
     login,
     regiser,
+    allUser,
 };
