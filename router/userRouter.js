@@ -3,7 +3,7 @@ const express = require('express');
 
 // internal imports
 const { login, regiser, allUser } = require('../controller/userController');
-const checkLogin = require('../middleware/authGurd/checkLogin');
+const { checkAdmin } = require('../middleware/authGurd/checkLogin');
 const {
     registerValidators,
     registerValidatorsHandler,
@@ -21,6 +21,6 @@ router.post('/login', doLoginValidators, doLoginValidationHandlers, login);
 router.post('/register', registerValidators, registerValidatorsHandler, regiser);
 
 // user register
-router.get('/all', checkLogin, allUser);
+router.get('/all', checkAdmin, allUser);
 
 module.exports = router;
