@@ -8,7 +8,7 @@ const User = require('../models/People');
 
 /**
  * @desc Auth user & get token
- * @route POST /api/users/login
+ * @route POST /api/user/login
  * @access Public
  */
 

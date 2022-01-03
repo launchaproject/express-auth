@@ -3,7 +3,6 @@ const express = require('express');
 
 // internal imports
 const { login, regiser } = require('../controller/userController');
-const checkLogin = require('../middleware/authGurd/checkLogin');
 const {
     registerValidators,
     registerValidatorsHandler,
