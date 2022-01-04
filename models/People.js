@@ -1,38 +1,40 @@
-/* eslint-disable comma-dangle */
-const mongoose = require('mongoose');
+// eslint-disable-next-line prettier/prettier
+const mongoose = require("mongoose");
 
 const peopleSchema = mongoose.Schema(
-    {
-        name: {
-            type: String,
-            required: true,
-            trim: true,
-        },
-        email: {
-            type: String,
-            required: true,
-            trim: true,
-            lowercase: true,
-        },
-        phone: {
-            type: String,
-            required: true,
-        },
-        password: {
-            type: String,
-            required: true,
-        },
-        role: {
-            type: String,
-            enum: ['admin', 'user'],
-            default: 'user',
-        },
+  {
+    name: {
+      type: String,
+      required: true,
+      trim: true,
     },
-    {
-        timestamps: true,
-    }
+    email: {
+      type: String,
+      required: true,
+      trim: true,
+      lowercase: true,
+    },
+    phone: {
+      type: String,
+      required: true,
+    },
+    password: {
+      type: String,
+      required: true,
+    },
+    roles: [
+      {
+        type: mongoose.Types.ObjectId,
+        ref: "Role",
+        required: true,
+      },
+    ],
+  },
+  {
+    timestamps: true,
+  }
 );
 
-const People = mongoose.model('People', peopleSchema);
+const People = mongoose.model("People", peopleSchema);
 
 module.exports = People;
